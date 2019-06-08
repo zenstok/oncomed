@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "525574472993",
+    "firebase_url": "https://oncomed-1be64.firebaseio.com",
+    "project_id": "oncomed-1be64",
+    "storage_bucket": "oncomed-1be64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525574472993:android:532074f54d5f0505",
+        "android_client_info": {
+          "package_name": "challengeaccepted.oncomed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525574472993-aklnmdvr74taac8t6kdogr4tb857apup.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm7ri4-16ui7OgRagGqsEpEuaEyo2yQRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525574472993-aklnmdvr74taac8t6kdogr4tb857apup.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
