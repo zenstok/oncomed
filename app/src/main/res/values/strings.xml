@@ -30,4 +30,6 @@
     <string name="cnp">CNP</string>
     <string name="city">Oras</string>
     <string name="telephone">Telefon</string>
+    <string name="nav_requests">Cereri inregistrate</string>
+    <string name="register_request">Inregistreaza o noua cerere</string>
 </resources>
