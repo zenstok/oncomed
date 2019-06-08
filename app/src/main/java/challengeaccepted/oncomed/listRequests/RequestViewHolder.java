@@ -33,7 +33,6 @@ public class RequestViewHolder extends RecyclerView.ViewHolder{
         textViewSubstance = itemView.findViewById(R.id.text_view_drug_substance);
         textViewDrugName = itemView.findViewById(R.id.text_view_drug_name);
         textViewConcentration = itemView.findViewById(R.id.text_view_drug_concentration);
-        textViewDuration = itemView.findViewById(R.id.text_view_drug_duration);
         textViewNumber = itemView.findViewById(R.id.text_view_number);
         textViewStatus = itemView.findViewById(R.id.text_view_status);
     }

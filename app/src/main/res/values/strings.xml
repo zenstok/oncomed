@@ -32,4 +32,9 @@
     <string name="telephone">Telefon</string>
     <string name="nav_requests">Cereri inregistrate</string>
     <string name="register_request">Inregistreaza o noua cerere</string>
+    <string name="active_substance">Substanta Activa</string>
+    <string name="drug_name">Nume Medicament</string>
+    <string name="drug_concentration">Concentratie</string>
+    <string name="drug_quantity">Cantitate</string>
+    <string name="send_request">Trimite Cerere</string>
 </resources>

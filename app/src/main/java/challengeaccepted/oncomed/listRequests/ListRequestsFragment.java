@@ -1,11 +1,14 @@
 package challengeaccepted.oncomed.listRequests;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +30,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import challengeaccepted.oncomed.R;
 import challengeaccepted.oncomed.addRequest.Drug;
 import challengeaccepted.oncomed.addRequest.Pacient;
@@ -40,9 +41,9 @@ import challengeaccepted.oncomed.main.MainActivity;
  */
 public class ListRequestsFragment extends Fragment {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private RequestAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private List<Request> dataSource;
+    private List<Request> dataSource = new ArrayList<>();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public ListRequestsFragment() {
@@ -55,62 +56,47 @@ public class ListRequestsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list_requests, container, false);
 
-        initView(view);
-        getDataSource();
         return view;
     }
 
-    private void getDataSource() {
-        CollectionReference requestsRef = db.collection("request");
-        Query queryRequest = requestsRef.whereEqualTo("volunteer_id","GezsaNXugngBJKlL1klI");
-        queryRequest.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    final Request request = new Request();
-                    String date = document.get("start_date").toString();
-                    request.setDate(date);
-                    String status = document.get("status").toString();
-                    request.setStatus(status);
-                    String drugId = document.get("drug_id").toString();
-                    CollectionReference drugRef = db.collection("drug");
-                    DocumentReference drugReff = drugRef.document("/drug/" + drugId);
-                    drugReff.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                        @Override
-                        public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                            Drug drug = new Drug(documentSnapshot.get("active_substance").toString(),
-                                    documentSnapshot.get("name").toString(),
-                                    (int)documentSnapshot.get("concentration"),
-                                    (int)documentSnapshot.get("treatment_period"));
-                            request.setDrug(drug);
-                        }
-                    });
-                    String patientId = document.get("patient_id").toString();
-                    CollectionReference patientRef = db.collection("patient");
-                    DocumentReference patientReff = patientRef.document("/patient/" + patientId);
-                    patientReff.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-                        @Override
-                        public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                            Pacient pacient = new Pacient();
-                            pacient.setFirstName(documentSnapshot.get("first-name").toString());
-                            pacient.setLastName(documentSnapshot.get("last-name").toString());
-                            request.setPacient(pacient);
-                        }
-                    });
-                    dataSource.add(request);
-                }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-            }
-        });
+        putElementsInRecyclerView(view);
     }
 
-    private void initView(View view) {
-        dataSource = new ArrayList<>();
-        mRecyclerView = view.findViewById(R.id.recycler_view_requests);
-        mLayoutManager = new LinearLayoutManager(this.getContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new RequestAdapter(dataSource);
-        mRecyclerView.setAdapter(mAdapter);
+    private void putElementsInRecyclerView(View v) {
+        final View view = v;
+        final Activity activity = getActivity();
+
+        db.collection("request").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Request request = new Request();
+                        request.setDate(document.getData().get("date").toString());
+                        request.setStatus(document.getData().get("status").toString());
+                        request.setQuantity(Integer.parseInt(document.getData().get("drug_quantity").toString()));
+                        request.setPacientFirstName(document.getData().get("patient_first_name").toString());
+                        request.setPacientLastName(document.getData().get("patient_last_name").toString());
+                        request.setDrugName(document.getData().get("drug_name").toString());
+                        request.setDrugActiveSubstance(document.getData().get("drug_active_substance").toString());
+                        request.setDrugConcentration(document.getData().get("drug_concentration").toString());
+                        dataSource.add(request);
+                    }
+                    mRecyclerView = view.findViewById(R.id.recycler_view_requests);
+                    mLayoutManager = new LinearLayoutManager(activity);
+                    mRecyclerView.setLayoutManager(mLayoutManager);
+                    mAdapter = new RequestAdapter(dataSource);
+                    mRecyclerView.setAdapter(mAdapter);
+
+                } else {
+                    Log.d("FIREBASE APP", "Error getting documents: ", task.getException());
+                }
+            }
+        });
     }
 
 }

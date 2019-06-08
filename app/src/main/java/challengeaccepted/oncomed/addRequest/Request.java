@@ -4,22 +4,21 @@ import java.util.List;
 
 public class Request {
     String date;
-    Pacient pacient;
-    Volunteer volunteer;
-    Drug drug;
-    int quantity;
+    String comment;
     String status;
+    String pacientFirstName;
+    String pacientLastName;
+    String paciendId;
+    String volunteerName;
+    String volunteerId;
+    String drugName;
+    String drugActiveSubstance;
+    String drugConcentration;
+    String drugId;
+    int quantity;
 
     public Request() {
 
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getDate() {
@@ -30,14 +29,6 @@ public class Request {
         this.date = date;
     }
 
-    public Request(String date, Pacient pacient, Volunteer volunteer, Drug drug, int quantity) {
-        this.date = date;
-        this.pacient = pacient;
-        this.volunteer = volunteer;
-        this.drug = drug;
-        this.quantity = quantity;
-    }
-
     public int getQuantity() {
         return quantity;
     }
@@ -46,27 +37,91 @@ public class Request {
         this.quantity = quantity;
     }
 
-    public Pacient getPacient() {
-        return pacient;
+    public String getComment() {
+        return comment;
     }
 
-    public void setPacient(Pacient pacient) {
-        this.pacient = pacient;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    public Volunteer getVolunteer() {
-        return volunteer;
+    public String getStatus() {
+        return status;
     }
 
-    public void setVolunteer(Volunteer volunteer) {
-        this.volunteer = volunteer;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    public String getPacientFirstName() {
+        return pacientFirstName;
     }
 
-    public Drug getDrug() {
-        return drug;
+    public void setPacientFirstName(String pacientFirstName) {
+        this.pacientFirstName = pacientFirstName;
     }
 
-    public void setDrug(Drug drug) {
-        this.drug = drug;
+    public String getPacientLastName() {
+        return pacientLastName;
+    }
+
+    public void setPacientLastName(String pacientLastName) {
+        this.pacientLastName = pacientLastName;
+    }
+
+    public String getPaciendId() {
+        return paciendId;
+    }
+
+    public void setPaciendId(String paciendId) {
+        this.paciendId = paciendId;
+    }
+
+    public String getVolunteerName() {
+        return volunteerName;
+    }
+
+    public void setVolunteerName(String volunteerName) {
+        this.volunteerName = volunteerName;
+    }
+
+    public String getVolunteerId() {
+        return volunteerId;
+    }
+
+    public void setVolunteerId(String volunteerId) {
+        this.volunteerId = volunteerId;
+    }
+
+    public String getDrugName() {
+        return drugName;
+    }
+
+    public void setDrugName(String drugName) {
+        this.drugName = drugName;
+    }
+
+    public String getDrugId() {
+        return drugId;
+    }
+
+    public void setDrugId(String drugId) {
+        this.drugId = drugId;
+    }
+
+    public String getDrugActiveSubstance() {
+        return drugActiveSubstance;
+    }
+
+    public void setDrugActiveSubstance(String drugActiveSubstance) {
+        this.drugActiveSubstance = drugActiveSubstance;
+    }
+
+    public String getDrugConcentration() {
+        return drugConcentration;
+    }
+
+    public void setDrugConcentration(String drugConcentration) {
+        this.drugConcentration = drugConcentration;
     }
 }

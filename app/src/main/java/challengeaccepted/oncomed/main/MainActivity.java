@@ -1,5 +1,6 @@
 package challengeaccepted.oncomed.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import challengeaccepted.oncomed.R;
+import challengeaccepted.oncomed.addRequest.AddRequestActivity;
 import challengeaccepted.oncomed.listRequests.ListRequestsFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -97,9 +99,10 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_requests) {
+            goToListRequestsFragment();
+        } else if (id == R.id.register_request) {
+            goToAddRequestActivity();
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -114,5 +117,17 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void goToAddRequestActivity() {
+        Intent goToAddRequestActivity = new Intent(MainActivity.this, AddRequestActivity.class);
+        startActivity(goToAddRequestActivity);
+    }
+
+    private void goToListRequestsFragment() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.fluid_container,new ListRequestsFragment());
+        transaction.commit();
     }
 }

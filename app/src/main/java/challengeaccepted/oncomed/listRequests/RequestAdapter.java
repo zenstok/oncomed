@@ -32,12 +32,11 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestViewHolder> {
         if(currentRequest != null){
             requestViewHolder.getTextViewDate().setText(currentRequest.getDate());
             requestViewHolder.getTextViewStatus().setText(currentRequest.getStatus());
-            requestViewHolder.getTextViewConcentration().setText(currentRequest.getDrug().getConcentration());
-            requestViewHolder.getTextViewDrugName().setText(currentRequest.getDrug().getName());
-            requestViewHolder.getTextViewDuration().setText(currentRequest.getDrug().getTreatmentPeriod());
-            requestViewHolder.getTextViewNumber().setText(currentRequest.getQuantity());
-            requestViewHolder.getTextViewPatient().setText(currentRequest.getPacient().getFirstName() + " " + currentRequest.getPacient().getLastName());
-            requestViewHolder.getTextViewSubstance().setText(currentRequest.getDrug().getActiveSubstance());
+            requestViewHolder.getTextViewConcentration().setText(currentRequest.getDrugConcentration());
+            requestViewHolder.getTextViewDrugName().setText(currentRequest.getDrugName());
+            requestViewHolder.getTextViewNumber().setText(currentRequest.getQuantity()+"");
+            requestViewHolder.getTextViewPatient().setText(currentRequest.getPacientFirstName()+" "+currentRequest.getPacientLastName());
+            requestViewHolder.getTextViewSubstance().setText(currentRequest.getDrugActiveSubstance());
         }
     }
 
