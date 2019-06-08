@@ -18,6 +18,11 @@ public class Pacient {
         this.email = email;
         this.drugs = drugs;
     }
+
+    public Pacient() {
+
+    }
+
     public String getLastName() {
         return lastName;
     }

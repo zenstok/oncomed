@@ -92,7 +92,8 @@ public class ListRequestsFragment extends Fragment {
                         @Override
                         public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                             Pacient pacient = new Pacient();
-                            pacient.setLa(documentSnapshot.get("name").toString());
+                            pacient.setFirstName(documentSnapshot.get("first-name").toString());
+                            pacient.setLastName(documentSnapshot.get("last-name").toString());
                             request.setPacient(pacient);
                         }
                     });
