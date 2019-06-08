@@ -19,6 +19,10 @@ public class Pacient {
         this.drugs = drugs;
     }
 
+    public Pacient() {
+
+    }
+
     public String getName() {
         return name;
     }
