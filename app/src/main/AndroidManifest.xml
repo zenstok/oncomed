@@ -13,15 +13,16 @@
             android:name=".main.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".requestDetails.RequestDetailsActivity"  android:screenOrientation="portrait" />
+        <activity android:name=".addRequest.AddRequestActivity"  android:screenOrientation="portrait" />
+        <activity android:name=".auth.SignUpActivity"  android:screenOrientation="portrait" />
+        <activity android:name=".auth.LoginActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".requestDetails.RequestDetailsActivity" />
-        <activity android:name=".addRequest.AddRequestActivity" />
-        <activity android:name=".auth.SignUpActivity" />
-        <activity android:name=".auth.LoginActivity" />
     </application>
 
 </manifest>
