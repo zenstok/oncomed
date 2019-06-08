@@ -18,7 +18,6 @@ public class Pacient {
         this.email = email;
         this.drugs = drugs;
     }
-
     public String getLastName() {
         return lastName;
     }
